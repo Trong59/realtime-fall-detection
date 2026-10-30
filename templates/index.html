@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Hệ Thống Phát Hiện Té Ngã - Web</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>🚨 Hệ Thống Phát Hiện Té Ngã Thời Gian Thực</h1>
+    </header>
+
+    <main>
+      <section class="video-panel">
+        <img id="videoFeed" src="/video_feed" alt="Video feed">
+        <div id="statusBanner" class="status-banner status-normal">TRẠNG THÁI: BÌNH THƯỜNG</div>
+      </section>
+
+      <section class="control-panel">
+        <div class="card">
+          <h2>Nguồn video</h2>
+          <label><input type="radio" name="sourceMode" value="webcam" checked> Webcam mặc định</label>
+          <label><input type="radio" name="sourceMode" value="file"> File video</label>
+          <select id="videoSelect" disabled></select>
+        </div>
+
+        <div class="card">
+          <h2>Tham số mô hình</h2>
+
+          <label class="slider-label">Ngưỡng LSTM (threshold): <span id="thresholdVal">0.60</span></label>
+          <input type="range" id="threshold" min="0.05" max="0.95" step="0.01" value="0.60">
+
+          <label class="slider-label">Số frame liên tiếp xác nhận: <span id="consecutiveVal">5</span></label>
+          <input type="range" id="consecutive" min="1" max="15" step="1" value="5">
+
+          <label class="slider-label">Cooldown LSTM (giây): <span id="cooldownVal">3.0</span></label>
+          <input type="range" id="cooldown" min="0.5" max="10" step="0.5" value="3.0">
+
+          <label class="slider-label">Ngưỡng bất động (giây): <span id="staticVal">4.0</span></label>
+          <input type="range" id="staticDuration" min="1" max="15" step="0.5" value="4.0">
+
+          <label><input type="checkbox" id="enableSafetyNet" checked> Bật Safety Net (nằm bất động)</label>
+          <label><input type="checkbox" id="enableSound" checked> Bật âm thanh cảnh báo</label>
+        </div>
+
+        <div class="card">
+          <button id="startBtn" class="btn btn-start">▶ Bắt đầu</button>
+          <button id="stopBtn" class="btn btn-stop" disabled>■ Dừng</button>
+        </div>
+
+        <div class="card">
+          <h2>Thông số thời gian thực</h2>
+          <p>FPS: <span id="fpsVal">-</span></p>
+          <p>P(fall): <span id="probVal">-</span></p>
+          <p>Bất động: <span id="staticDurVal">0.0s</span></p>
+        </div>
+
+        <div class="card">
+          <h2>Nhật ký cảnh báo</h2>
+          <div id="alertLog" class="alert-log"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

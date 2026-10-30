@@ -1,0 +1,30 @@
+# Python virtual environment
+venv/
+env/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Datasets & heavy media (Do not commit to Git!)
+dataset/
+dataset_raw/
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.avi
+*.zip
+*.tar.gz
+
+# Model runs & checkpoints
+runs/
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
